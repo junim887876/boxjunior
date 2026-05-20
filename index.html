@@ -532,7 +532,7 @@
         const SPREADSHEET_ID = '1UheMU2TdciHPVOv4WZfjZ8zxiKY9or9hnDPzZ0lfOog';
         
         const URL_USUARIOS = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=Usuarios`;
-        const URL_ENCOMENDAS = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=Encomendas`;
+        const URL_ENCOMENDAS = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=Encomendass`;
 
         const URL_DJANGO_BASE = "http://192.168.3.79:8000/usuarios/api/registrar-baixa/";
 
@@ -637,16 +637,16 @@
                     if (!rows[i][0] || rows[i][0] === '') continue;
                     
                     // Limpa absolutamente tudo deixando apenas os dígitos numéricos salvos na coluna do CPF
-                    let rowCpfClean = String(rows[i][0]).replace(/\D/g, '').trim();
+                    let rowCpfClean = String(rows[i][1]).replace(/\D/g, '').trim();
 
                     // Validação Estrita bilateral. Se o número limpo da planilha não bater 100% com o logado, o pacote é pulado.
                     if (rowCpfClean === loggedUserCpf && rowCpfClean !== '') {
                         globalPackages.push({
-                            id: String(rows[i][1]).trim(),
-                            descricao: rows[i][2],
-                            dataChegada: rows[i][3],
-                            status: String(rows[i][4] || 'Disponível').trim(),
-                            dataRetirada: rows[i][5] || "",
+                            id: String(rows[i][2]).trim(),
+                            descricao: rows[i][3],
+                            dataChegada: rows[i][4],
+                            status: String(rows[i][5] || 'Disponível').trim(),
+                            dataRetirada: rows[i][6] || "",
                             planilhaLinha: i + 1 
                         });
                     }
